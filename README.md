@@ -1,132 +1,125 @@
-<<<<<<< HEAD
+
+# Praktikum 4 – Teknologi Big Data
+
+## Streaming Processing dan Real-Time Dashboard
 
 ---
 
-# 📊 Praktikum Big Data
+## Identitas
 
-## Batch Analytics + Visualization Layer (Big Data Dashboard)
-
-| Keterangan         | Informasi            |
-| ------------------ | -------------------- |
-| **Nama**           | Sabila Rizqina Majid |
-| **NIM**            | 230104040058         |
-| **Mata Kuliah**    | Teknologi Big Data   |
-| **Dosen Pengampu** | Bapak Muhayat, M.IT  |
+Nama            : Sabila Rizqina Majid  
+NIM             : 230104040058  
+Mata Kuliah     : Teknologi Big Data  
+Program Studi   : Teknologi Informasi  
 
 ---
 
-# 📌 Deskripsi Project
+## Deskripsi Praktikum
 
-Project ini merupakan implementasi **Batch Data Analytics dan Visualization Layer** dalam arsitektur **Big Data Pipeline**.
+Praktikum ini bertujuan untuk mengimplementasikan sistem pemrosesan data secara streaming menggunakan Apache Spark serta menampilkan hasil analisis secara real-time melalui dashboard berbasis Streamlit.
 
-Dataset e-commerce diproses menggunakan **Apache Spark (PySpark)** untuk menghasilkan dataset analitik yang kemudian digunakan sebagai sumber data untuk membuat dashboard menggunakan **Power BI**.
-
-Praktikum ini bertujuan untuk memahami bagaimana proses **pengolahan data hingga visualisasi data** dilakukan dalam sistem Big Data.
+Sistem yang dibangun mensimulasikan aliran data transaksi e-commerce yang diproses secara kontinu. Data tersebut kemudian dianalisis untuk menghasilkan informasi penting yang ditampilkan dalam bentuk visualisasi interaktif.
 
 ---
 
-# 🏗 Big Data Pipeline
+## Tujuan
 
-Pipeline data pada project ini adalah sebagai berikut:
-
-```
-Raw Dataset → Spark Processing → Analytics Layer → Serving Dataset → Power BI Dashboard
-```
-
-Penjelasan pipeline:
-
-1. **Data Source**
-   Dataset e-commerce dalam format CSV digunakan sebagai sumber data mentah.
-
-2. **Processing Layer**
-   Data diproses menggunakan **Apache Spark (PySpark)** untuk melakukan:
-
-   * data cleaning
-   * data transformation
-   * aggregation
-
-3. **Analytics Layer**
-   Data dianalisis untuk menghasilkan metrik seperti total revenue dan kategori produk.
-
-4. **Serving Layer**
-   Dataset hasil analisis disimpan pada folder:
-
-```
-data/serving
-```
-
-5. **Visualization Layer**
-   Dataset digunakan untuk membuat dashboard menggunakan **Power BI Desktop**.
+1. Memahami konsep dasar streaming data dalam Big Data  
+2. Mengimplementasikan Apache Spark Structured Streaming  
+3. Mengolah data secara real-time  
+4. Membangun dashboard interaktif menggunakan Streamlit  
+5. Mengintegrasikan pipeline data end-to-end  
 
 ---
 
-# 📂 Struktur Project
+## Teknologi yang Digunakan
+
+- Apache Spark  
+- Python  
+- Streamlit  
+- Parquet File Format  
+
+---
+
+## Struktur Project
 
 ```
-big-data-dashboard
+
+bigdata-praktikum4/
 │
-├── data
-│   └── serving
+├── scripts/
+│   ├── streaming_layer.py
+│   ├── transaction_generator.py
+│   ├── analytics_layer.py
+│   └── visualization_layer.py
 │
-├── scripts
-│   └── analytics_layer.py
+├── dashboard/
+│   └── dashboard_streamlit.py
 │
-├── dashboard
-│   └── bigdata_dashboard.pbix
+├── data/
+│   ├── raw/
+│   ├── clean/
+│   └── curated/
 │
+├── reports/
+│   └── category_revenue.png
+│
+├── .gitignore
 └── README.md
+
 ```
-
-Penjelasan folder:
-
-* **data/** → menyimpan dataset project
-* **scripts/** → script PySpark untuk analisis data
-* **dashboard/** → file dashboard Power BI
-* **README.md** → dokumentasi project
 
 ---
 
-# ⚙️ Cara Menjalankan Program
+## Cara Menjalankan Program
 
-Untuk menjalankan proses analisis data gunakan perintah berikut:
+Program dijalankan menggunakan tiga terminal secara bersamaan:
+
+### Terminal 1 – Spark Streaming
+```
+
+spark-submit scripts/streaming_layer.py
 
 ```
-python scripts/analytics_layer.py
+
+### Terminal 2 – Transaction Generator
 ```
 
-Script ini akan memproses dataset menggunakan **PySpark** dan menghasilkan dataset analitik yang disimpan pada folder **data/serving**.
+python3 scripts/transaction_generator.py
+
+```
+
+### Terminal 3 – Dashboard
+```
+
+python -m streamlit run dashboard/dashboard_streamlit.py
+
+```
 
 ---
 
-# 📊 Dashboard
+## Alur Sistem
 
-Dataset yang telah diproses kemudian digunakan untuk membuat dashboard analitik menggunakan **Power BI**.
-
-File dashboard disimpan dalam format:
-
-```
-bigdata_dashboard.pbix
-```
-
-Dashboard ini menampilkan informasi seperti:
-
-* Total Revenue
-* Top Product
-* Revenue Category
+1. Transaction generator menghasilkan data transaksi secara kontinu  
+2. Spark Streaming membaca dan memproses data tersebut  
+3. Data disimpan dalam format Parquet  
+4. Dashboard membaca hasil data dan menampilkan visualisasi secara real-time  
 
 ---
 
-# 🛠 Teknologi yang Digunakan
+## Hasil
 
-Project ini menggunakan beberapa teknologi berikut:
+Dashboard menampilkan beberapa informasi utama, antara lain:
 
-* **Apache Spark (PySpark)**
-* **Python**
-* **Power BI Desktop**
-* **GitHub**
+- Total Revenue  
+- Top Products  
+- Category Revenue  
+- Average Transaction  
 
 ---
-=======
-# bigdata-dashboard-praktikum3
-Praktikum 3 Teknologi Big Data
->>>>>>> fda881b4bceb7bc6a41aa1efe43f22da9271d261
+
+## Kesimpulan
+
+Implementasi streaming processing menggunakan Apache Spark memungkinkan pemrosesan data secara real-time dengan efisien. Integrasi dengan Streamlit memberikan visualisasi yang interaktif sehingga memudahkan dalam memahami data yang dihasilkan.
+
+---
