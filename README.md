@@ -72,7 +72,3 @@ Sistem berhasil memproses data secara real-time dan menampilkan visualisasi yang
 
 ```
 
-
-
-Kalau kamu mau lebih mirip lagi kayak dokumen (misalnya garis tengah / center), aku juga bisa bikinin versi yang **lebih aesthetic** 👍
-```
