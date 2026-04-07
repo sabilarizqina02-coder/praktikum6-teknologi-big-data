@@ -1,9 +1,9 @@
 import pandas as pd
 import os
 
-# ============================
+# =========================
 # LOAD DATA
-# ============================
+# =========================
 def load_data(path):
     if not os.path.exists(path):
         return pd.DataFrame()
@@ -20,9 +20,10 @@ def load_data(path):
 
     return df
 
-# ============================
+
+# =========================
 # PREPROCESS
-# ============================
+# =========================
 def preprocess(df):
     if df.empty:
         return df
@@ -32,9 +33,10 @@ def preprocess(df):
 
     return df
 
-# ============================
+
+# =========================
 # METRICS
-# ============================
+# =========================
 def compute_metrics(df):
     if df.empty:
         return {
@@ -42,15 +44,17 @@ def compute_metrics(df):
             "total_fare": 0,
             "top_location": "-"
         }
+
     return {
         "total_trips": len(df),
         "total_fare": df["fare"].sum(),
         "top_location": df.groupby("location")["fare"].sum().idxmax()
     }
 
-# ============================
+
+# =========================
 # PEAK HOUR
-# ============================
+# =========================
 def detect_peak_hour(df):
     if df.empty:
         return None
@@ -58,20 +62,23 @@ def detect_peak_hour(df):
     df["hour"] = df["timestamp"].dt.hour
     return df.groupby("hour").size().idxmax()
 
-# ============================
+
+# =========================
 # VISUALIZATION DATA
-# ============================
+# =========================
 def fare_per_location(df):
     if df.empty:
         return pd.Series()
 
     return df.groupby("location")["fare"].sum().sort_values(ascending=False)
 
+
 def vehicle_distribution(df):
     if df.empty:
         return pd.Series()
 
     return df.groupby("vehicle_type").size().sort_values(ascending=False)
+
 
 def mobility_trend(df):
     if df.empty:
@@ -80,9 +87,30 @@ def mobility_trend(df):
     df = df.set_index("timestamp")
     return df["fare"].resample("10s").sum()
 
-# ============================
+
+# =========================
+# NEW (PRAKTIKUM 6)
+# WINDOW AGGREGATION
+# =========================
+def traffic_per_window(df):
+    """
+    Agregasi jumlah trip per menit (windowing)
+    Digunakan untuk visualisasi skala besar (efficient rendering)
+    """
+
+    if df.empty:
+        return None
+
+    df["timestamp"] = pd.to_datetime(df["timestamp"])
+
+    return df.set_index("timestamp") \
+        .resample("1min") \
+        .size()
+
+
+# =========================
 # ANOMALY DETECTION
-# ============================
+# =========================
 def detect_anomaly(df):
     if df.empty:
         return pd.DataFrame()
